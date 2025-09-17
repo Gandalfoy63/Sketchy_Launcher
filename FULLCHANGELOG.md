@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 
 ---
+## [0.3.1] - 2025-09-17
+
+### Fixed
+- Bug in version check that prevented automatic update detection.
+- Fixed theme update download issues on first run.
 
 ## [v0.3.0] – 2025-09-17
 
