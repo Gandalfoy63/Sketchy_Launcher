@@ -1,17 +1,17 @@
-## [0.3.5] - 2025-09-20
-### Added
-- New **update check system** that fetches the latest version from GitHub (`version.json`) and prompts the user if a new version is available.
-- **Update popup window** (modal) that always appears in front of the launcher, giving the choice to update now or later.
-- Added **changelog support** via GitHub `CHANGELOG.md` format.
+## [0.3.7] - 2025-09-20
 
-### Changed
-- The **update process** now restarts the launcher automatically after downloading and replacing the file.
-- Improved **settings.json auto-sync**: missing keys are now automatically added with default values.
-- Consistent use of **grid/pack separation** in UI pages to avoid geometry manager conflicts.
+### Added
+- First-run install folder setup: prompts user to select a folder and saves it to `install_folder.json`.
+- `Change Folder` button in settings updates `install_folder.json` without triggering on page load.
+- `install_folder.json` now stores absolute paths relative to the launcher directory.
+- Default folder dialog now opens in the launcher folder for predictable behavior.
+- `install_folder_var` properly uses `CTk.StringVar` with the main root to prevent Tkinter errors.
 
 ### Fixed
-- Fixed `NameError: show_update_page not defined` by implementing a proper popup function.
-- Fixed issue where `version.json` returned incorrect values due to formatting.
-- Fixed wrong version display inside **settings page** (now correctly shows the launcher version).
-- Fixed broken **changelog link** to ensure proper GitHub navigation.
-- Prevented update popup from appearing when `"coding": "1"` is set in `settings.json`.
+- Issue where `Change Folder` function ran immediately when loading the settings page.
+- Tkinter `StringVar` initialization error (“Too early to create variable”) when loading install path.
+- Inconsistent install folder detection when running from PyCharm versus direct launch.
+
+### Changed
+- Launcher now reads and writes install folder paths in a central JSON file next to `launcher.py`.
+- Folder selection now defaults to the launcher directory rather than the current working directory.
