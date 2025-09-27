@@ -1,17 +1,13 @@
-## [0.3.7] - 2025-09-20
+## [0.5.0] - 2025-09-27
 
 ### Added
-- First-run install folder setup: prompts user to select a folder and saves it to `install_folder.json`.
-- `Change Folder` button in settings updates `install_folder.json` without triggering on page load.
-- `install_folder.json` now stores absolute paths relative to the launcher directory.
-- Default folder dialog now opens in the launcher folder for predictable behavior.
-- `install_folder_var` properly uses `CTk.StringVar` with the main root to prevent Tkinter errors.
+- Provider Info page now includes **username** (`provider_user`) and **password** (`provider_pwd`) fields.
+- Provider password is **hashed with SHA-256** before being appended to download URLs.
+- `defaultneeds.json` and `defaultneeds_version` URLs now include credentials: `cred='<user>'&pwd='<hashed_pwd>'`.
+- **Info logs** added for provider credentials (username and hashed password) for debugging.
+- Saved credentials persist in `settings.json` and are editable via the UI.
 
 ### Fixed
-- Issue where `Change Folder` function ran immediately when loading the settings page.
-- Tkinter `StringVar` initialization error (“Too early to create variable”) when loading install path.
-- Inconsistent install folder detection when running from PyCharm versus direct launch.
-
-### Changed
-- Launcher now reads and writes install folder paths in a central JSON file next to `launcher.py`.
-- Folder selection now defaults to the launcher directory rather than the current working directory.
+- Credential variables (`user` and `pwd_hashed`) are now **globally available** for networking and download functions.
+- Download functions now properly **authenticate with the provider server** using credentials.
+- Local `defaultneeds.json` is used as a **fallback** if the download fails.
